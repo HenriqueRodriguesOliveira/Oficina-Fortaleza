@@ -8,16 +8,17 @@ export const styles = StyleSheet.create({
       justifyConten: 'center',
     },
     titulo:{
-      fontSize: 30,
+      fontSize: 35,
       color: '#F4782F',
       fontWeight: 'bold',
-      marginTop: 20,
-      marginBottom: 20,
+      marginTop: 30,
+      marginBottom: 10,
     },
     texto:{
         fontSize: 16,
         color: '#ddd',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginBottom: 5
       },
 
     titulo2:{
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
       fontSize: 16,
       paddingLeft: 8,
       marginBottom: 10,
-      backgroundColor: '#aaa',
+      backgroundColor: '#f1f1f1',
       borderColor: '#F4782F',
       borderWidth: 0.5,
       },
@@ -66,6 +67,18 @@ export const styles = StyleSheet.create({
       },
 
     lista:{
-      flex:1
+        flex:1
+      },
+
+    row:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 50,
+      },
+    
+    texto3:{
+      fontSize: 30,
+      fontWeight: 'bold',
+      color: '#f1f1f1',
     }
 })

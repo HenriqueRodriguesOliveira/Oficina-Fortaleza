@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, FlatList, TextInput, ScrollView} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import {styles} from '../Home/styles';
 import firebase from '../../services/firebaseConnections';
 import Listagem from './listagem';
 
 export function HistoricoClientes() {
-  const navigation = useNavigation();
   const [lista, setLista] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(()=> {
     async function dados(){
@@ -25,6 +25,7 @@ export function HistoricoClientes() {
             date: childItem.val().date,
           };
           setLista(oldArray => [...oldArray, data].reverse());
+          setLoading(false);
         })
       })
     }
@@ -34,11 +35,13 @@ export function HistoricoClientes() {
     <View style={styles.container}>
 
       <View style={styles.lista}>
+      {loading ? <ActivityIndicator size="large" color="#842" style={{top: 200}}/> :
       <FlatList 
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.key}
         data={lista}
         renderItem={({item}) => ( <Listagem data={item} />)} />
+      }
       </View>
       
     </View>

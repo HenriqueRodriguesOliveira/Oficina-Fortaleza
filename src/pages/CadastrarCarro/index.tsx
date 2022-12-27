@@ -31,7 +31,7 @@ export function CadastrarCarros() {
     }
     return (
         <View style={styles.container}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
         
         <View style={styles.containerPlaca}>
           <Text style={styles.texto}>Carro: {carro}</Text>

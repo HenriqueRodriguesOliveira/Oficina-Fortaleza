@@ -1,15 +1,16 @@
 import React from 'react';
 
 import { NavigationContainer} from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { propsNavigationStack } from './src/Models/type';
+
 
 import { Home } from './src/pages/Home';
 import { CadastrarCarros } from './src/pages/CadastrarCarro';
 import { CadastrarCliente } from './src/pages/CadastrarCliente';
 import { HistoricoClientes } from './src/pages/HistoricoClientes';
-import { Contatos } from './src/pages/Contatos';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator<propsNavigationStack>();
 
 export default function App(){
   return(
@@ -17,37 +18,29 @@ export default function App(){
     <Stack.Navigator initialRouteName='Home'>
       <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
 
-      <Stack.Screen name="Cadastrar" component={CadastrarCarros} options={{headerStyle: {
+      <Stack.Screen name="CadastrarCarros" component={CadastrarCarros} options={{headerStyle: {
             backgroundColor: '#444',
           },
           headerTintColor: '#F4782F',
           headerTitleStyle: {
             fontWeight: 'bold',
-          },}}/>
+          }, title: 'Cadastrar carros'}}/>
 
-      <Stack.Screen name="Cadastrar Cliente" component={CadastrarCliente} options={{headerStyle: {
+      <Stack.Screen name="CadastrarCliente" component={CadastrarCliente} options={{headerStyle: {
             backgroundColor: '#444',
           },
           headerTintColor: '#F4782F',
           headerTitleStyle: {
             fontWeight: 'bold',
-          },}}/>
+          }, title: 'Cadastrar clientes'}}/>
       
-      <Stack.Screen name="Clientes Cadastrados" component={HistoricoClientes} options={{headerStyle: {
+      <Stack.Screen name="ClientesCadastrados" component={HistoricoClientes} options={{headerStyle: {
             backgroundColor: '#444',
           },
           headerTintColor: '#F4782F',
           headerTitleStyle: {
             fontWeight: 'bold',
-          },}}/>
-      
-      <Stack.Screen name="Contatos" component={Contatos} options={{headerStyle: {
-            backgroundColor: '#444',
-          },
-          headerTintColor: '#F4782F',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },}}/>
+          }, title: 'Clientes cadastrados'}}/>
     </Stack.Navigator>
     </NavigationContainer>
 );
