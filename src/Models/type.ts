@@ -11,10 +11,12 @@ export type propsNavigationStack = {
   ClientesCadastrados: {
     name: string
   }
-  
+
   Contatos: undefined
 
   HistoricoClientes: undefined
 }
+
+
 
 export type propsStack = NativeStackNavigationProp<propsNavigationStack>

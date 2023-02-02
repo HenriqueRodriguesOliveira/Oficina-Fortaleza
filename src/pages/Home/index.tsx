@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, Image, FlatList, TextInput, ScrollView, ActivityIndicator, LogBox } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, TextInput, ScrollView, ActivityIndicator, LogBox } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import {styles} from './styles';
-import  { dataBase } from '../../services/firebaseConnections';
 import Listagem from './listagem';
-import calendario from '../../assets/calendario.png';
+import firebase from '../../services/firebaseConnections';
+
 import { propsStack } from '../../Models/type';
 
 LogBox.ignoreAllLogs();
@@ -14,10 +14,6 @@ export function Home() {
   const navigation = useNavigation<propsStack>();
   const [lista, setLista] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const db = dataBase;
-
-  
 
   useEffect(()=> {
     async function dados(){
@@ -28,11 +24,11 @@ export function Home() {
           let data = {
             key: childItem.key,
             Carro: childItem.val().Carro,
-            Placa: childItem.val().Placa,
             Ano: childItem.val().Ano,
-            date: childItem.val().date,
             Km: childItem.val().Km,
+            Placa: childItem.val().Placa,
             Serviço: childItem.val().Serviço,
+            date: childItem.val().date,
           };
           setLista(oldArray => [...oldArray, data].reverse());
           setLoading(false);
@@ -41,6 +37,7 @@ export function Home() {
     }
     dados();
   },[]);
+
   return (
     <View style={styles.container}>
 
@@ -82,9 +79,6 @@ export function Home() {
 
       <View style={styles.row}>
       <Text style={styles.texto3}>Serviços Registrados</Text>
-      <TouchableOpacity>
-        <Image source={calendario}/>
-      </TouchableOpacity>
       </View>
 
       <View style={styles.lista}>
@@ -100,3 +94,28 @@ export function Home() {
     </View>
   )
 }
+
+/*
+useEffect(()=> {
+    async function dados(){
+      await firebase.database().ref('Carros').limitToLast(5).on('value', (snapshot)=>{
+        setLista([]);
+
+        snapshot.forEach((childItem) =>  {
+          let data = {
+            key: childItem.key,
+            Carro: childItem.val().Carro,
+            Placa: childItem.val().Placa,
+            Ano: childItem.val().Ano,
+            date: childItem.val().date,
+            Km: childItem.val().Km,
+            Serviço: childItem.val().Serviço,
+          };
+          setLista(oldArray => [...oldArray, data].reverse());
+          setLoading(false);
+        })
+      })
+    }
+    dados();
+  },[]);
+*/

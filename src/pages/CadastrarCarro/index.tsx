@@ -91,7 +91,7 @@ export function CadastrarCarros() {
           autoCapitalize='characters'
         />
 
-        <TouchableOpacity style={styles.botao}>
+        <TouchableOpacity onPress={handleAdd} style={styles.botao}>
           <Text style={styles.texto}>CADASTRAR SERVIÇO</Text>
         </TouchableOpacity>
         </ScrollView>
